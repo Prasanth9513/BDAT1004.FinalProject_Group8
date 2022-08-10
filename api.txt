@@ -1,0 +1,9 @@
+   
+
+   1. http://18.219.152.178/getallapi/  :Api for get all data stored our database
+
+   2. http://18.219.152.178/getbyid/2  : Api for get data with id from our data base "2" is id 
+
+   3. http://18.219.152.178/getbyitem/AOA/ : Api for get data with currency where AOA is currency
+
+   4. http://18.219.152.178/getbydate/2022-08-08/  : api for get data with date 
