@@ -1,0 +1,84 @@
+{% extends 'application/base.html' %}
+{% load static %}
+{% block body %}
+<div class="container" >
+    <h1 class="display-2" style="">Live Exchange Rate Of Currencies</h1>
+<div class="row">
+
+<div class="col px-5 py-5">
+<div >
+<h5 class="my-3" style="color:#6f706f">See By Date </h5>
+<form>
+<div class="row g-3 align-items-center">
+
+<div class="col-auto">
+{% comment %} <label  class="col-form-label">Select Date:</label> {% endcomment %}
+<input type="date" id="getdate" name="getdate" class="form-control"
+aria-describedby="passwordHelpInline" {% if date %} value={{date}} {% endif %} required>
+</div>
+
+</div>
+
+<div class="d-grid gap-2 d-md-block my-2">
+<button class="btn btn-primary" type="submit">Show</button>
+</div>
+</form>
+
+              </div>
+        </div>
+        <div class="col-8 px-5 py-5">
+
+            <div>
+<h5 class="my-3" style="color:#6f706f"></h5>
+                <canvas id="chart"></canvas>
+              </div>
+        </div>
+    </div>
+
+
+
+
+ 
+{% endblock body %}
+{% block chartscript %}
+
+const itemlist = {{itemlist | safe}};
+const ratelist = {{ratelist | safe }};
+
+
+const channelcountdata = {
+labels: itemlist,
+datasets: [{
+label: `Exchange rate of currencies`,
+ backgroundColor: [
+'rgba(255, 99, 132)',
+'rgba(255, 159, 64)',
+'rgba(255, 205, 86)',
+'rgba(75, 192, 192)',
+'rgba(54, 162, 235)',
+'rgba(153, 102, 255)',
+'rgba(201, 203, 207)'
+],
+borderColor: [
+    'rgba(255, 99, 132)',
+    'rgba(255, 159, 64)',
+    'rgba(255, 205, 86)',
+    'rgba(75, 192, 192)',
+    'rgba(54, 162, 235)',
+    'rgba(153, 102, 255)',
+    'rgba(201, 203, 207)'
+    ],
+data: ratelist,
+}]
+};
+
+const channelconfig = {
+type: 'line',
+data: channelcountdata,
+options: {}
+};
+const channelchart = new Chart(
+document.getElementById('chart'),
+channelconfig
+);
+ {% endblock chartscript %}
